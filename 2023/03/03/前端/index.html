@@ -26,7 +26,7 @@
 
   
 
-  <title>css散碎点记录（不定时更新） | airlatus</title>
+  <title>对象的值不能被delete方法 | airlatus</title>
 
   
 
@@ -98,32 +98,32 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">css散碎点记录（不定时更新）</h1>
+          <h1 class="title-wrap">对象的值不能被delete方法</h1>
           <h2 class="title-sub-wrap">
             <strong>airLatus</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2023-03-21T08:20:17.250Z" itemprop="datePublished">2023-03-21</time>
+            <time  class="article-date" datetime="2023-03-03T08:36:45.219Z" itemprop="datePublished">2023-03-03</time>
           </h2>
           
             <h2 class="title-sub-wrap new-date">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-03-23T07:25:03.380Z" itemprop="dateUpdated">2023-03-23</time>
+              <time  class="article-updated" datetime="2023-03-23T08:54:18.529Z" itemprop="dateUpdated">2023-03-23</time>
             </h2>
           
           
-            <h2 id="/2023/03/21/%E5%89%8D%E7%AB%AFcss%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" class="title-sub-wrap leancloud_visitors" data-flag-title="css散碎点记录（不定时更新）">
+            <h2 id="/2023/03/03/%E5%89%8D%E7%AB%AF/" class="title-sub-wrap leancloud_visitors" data-flag-title="对象的值不能被delete方法">
               <em>文章访问量</em>
               <i class="leancloud-visitors-count"></i>
             </h2>
           
           <ul class="wrap-list dark">
   
-    <li><a href="/categories/css/">📒 css</a></li>
+    <li><a href="/categories/javaScript/">📒 javaScript</a></li>
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/css/">🏷️ css</a></li>
+    <li><a href="/tags/javaScript/">🏷️ javaScript</a></li>
   
 </ul>
         </div>
@@ -147,32 +147,24 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="img图片空隙问题"><a href="#img图片空隙问题" class="headerlink" title="img图片空隙问题"></a>img图片空隙问题</h3><p>凡是带有inline的元素，都有文字特性有文字分隔符和空格</p>
-<h3 id="垂直方向父子元素margin问题-x2F-margin塌陷问题"><a href="#垂直方向父子元素margin问题-x2F-margin塌陷问题" class="headerlink" title="垂直方向父子元素margin问题&#x2F;margin塌陷问题"></a>垂直方向父子元素margin问题&#x2F;margin塌陷问题</h3><p>如果父元素margin-top为100px，子元素margin小于父元素margin。子元素不会相对于父元素向下，如果子元素margin大于父元素margin，子元素也不会相对父元素向下，反而带动父元素一起向下偏移。</p>
-<h4 id="如何触发一个BFC"><a href="#如何触发一个BFC" class="headerlink" title="如何触发一个BFC"></a>如何触发一个BFC</h4><p>-<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">position:absolute;</span><br></pre></td></tr></table></figure></p>
-<p>-<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block;</span><br></pre></td></tr></table></figure></p>
-<p>-<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float:left/right;</span><br></pre></td></tr></table></figure></p>
-<p>-<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overflow:hidden;</span><br></pre></td></tr></table></figure></p>
-<p>当触发了BFC就可以解决上方的问题了</p>
-<h3 id="浮动元素如何被看到"><a href="#浮动元素如何被看到" class="headerlink" title="浮动元素如何被看到"></a>浮动元素如何被看到</h3><p>每个产生了浮动流的元素，块级元素都看不到，产生了BFC的元素和文本类属性（inline）的元素以及文本都能看到浮动元素</p>
-<h3 id="padding的用处"><a href="#padding的用处" class="headerlink" title="padding的用处"></a>padding的用处</h3><p>文字不能放到padding内，但是背景颜色和背景图片可以放在padding内，可以用来将padding设置为容器高度，容器设置overflow:hidden;当容器背景图片被正常加载情况下，文字被隐藏，如果因为网络原因，图片没能加载，这时候文字会展示出来，这时候如果容器是个a标签，就仍然可以点击文字跳转</p>
-<h3 id="行级元素如何可以设置高度"><a href="#行级元素如何可以设置高度" class="headerlink" title="行级元素如何可以设置高度"></a>行级元素如何可以设置高度</h3><p>当设置了position:absolute;或者float:left&#x2F;right;就相当于将该元素的display设置成了inline-block</p>
-<h3 id="css属性值计算过程"><a href="#css属性值计算过程" class="headerlink" title="css属性值计算过程"></a>css属性值计算过程</h3><ul>
-<li><p>确定声明值（参考样式表中没有冲突重复的声明作为css属性值）</p>
-</li>
-<li><p>层叠冲突（样式表重复冲突的样式根据规则确定css属性值）</p>
-<ul>
-<li>比较重要性（作者样式表大于浏览器默认样式表）</li>
-<li>比较特殊性（比如css选择器权重大小）</li>
-<li>比较源次序（同一个样式后面的会覆盖前面的）</li>
-</ul>
-</li>
-<li><p>使用继承（此时还没有值的属性，如果可以继承，比如文字样式类，则继承父元素属性值）</p>
-</li>
-<li><p>使用默认值（最后还没有属性值，则使用默认值，比如背景颜色background-color）</p>
-</li>
-</ul>
+        <h4 id="怎么做到对象里的一个值不能被delete"><a href="#怎么做到对象里的一个值不能被delete" class="headerlink" title="怎么做到对象里的一个值不能被delete?"></a>怎么做到对象里的一个值不能被delete?</h4><p>1、在 JavaScript 中，可以使用 <code>Object.defineProperty()</code> 方法将对象的属性定义为不可删除的。</p>
+<p>下面是一个示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">javascriptCopy code</span><br><span class="line">const obj = &#123;&#125;;</span><br><span class="line">Object.defineProperty(obj, &#x27;myProperty&#x27;, &#123;</span><br><span class="line">  value: 42,</span><br><span class="line">  configurable: false,</span><br><span class="line">  writable: true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(obj.myProperty); // 输出: 42</span><br><span class="line"></span><br><span class="line">delete obj.myProperty; // 删除不起作用</span><br><span class="line"></span><br><span class="line">console.log(obj.myProperty); // 输出: 42</span><br></pre></td></tr></table></figure>
 
+<p>在上面的代码中，使用 <code>Object.defineProperty()</code> 方法将 <code>obj</code> 对象的 <code>myProperty</code> 属性定义为不可配置的，这意味着它不能被删除。如果尝试使用 <code>delete</code> 运算符删除该属性，它将不起作用。</p>
+<p>需要注意的是，如果将 <code>configurable</code> 属性设置为 <code>false</code>，那么将不能更改该属性的描述符（如值、可写性、getter&#x2F;setter 等）。如果需要更改属性描述符，必须首先将 <code>configurable</code> 属性设置为 <code>true</code>。</p>
+<p>2、使用 <code>Object.freeze()</code> 方法：</p>
+<p>可以使用 <code>Object.freeze()</code> 方法将对象属性设置为不可修改和不可删除。以下是示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">javascriptCopy code</span><br><span class="line">const obj = &#123; myProperty: 42 &#125;;</span><br><span class="line">Object.freeze(obj);</span><br><span class="line"></span><br><span class="line">delete obj.myProperty; // 删除不起作用</span><br><span class="line"></span><br><span class="line">console.log(obj.myProperty); // 输出: 42</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，使用 <code>Object.freeze()</code> 方法将 <code>obj</code> 对象冻结，这意味着它的属性不可修改和不可删除。</p>
+<p>3、使用 <code>Proxy</code> 对象：</p>
+<p>可以使用 <code>Proxy</code> 对象拦截 <code>delete</code> 操作并阻止删除操作。以下是示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">javascriptCopy code</span><br><span class="line">const obj = &#123; myProperty: 42 &#125;;</span><br><span class="line">const proxy = new Proxy(obj, &#123;</span><br><span class="line">  deleteProperty: function(target, property) &#123;</span><br><span class="line">    if (property === &#x27;myProperty&#x27;) &#123;</span><br><span class="line">      return false;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return Reflect.deleteProperty(target, property);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">delete proxy.myProperty; // 删除不起作用</span><br><span class="line"></span><br><span class="line">console.log(proxy.myProperty); // 输出: 42</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，使用 <code>Proxy</code> 对象创建了一个代理对象 <code>proxy</code>，并使用 <code>deleteProperty</code> 方法拦截了 <code>delete</code> 操作。如果要删除的属性是 <code>myProperty</code>，则返回 <code>false</code>，否则返回 <code>Reflect.deleteProperty()</code> 的结果，即删除操作的结果。</p>
+<p>需要注意的是，<code>Proxy</code> 对象可能会影响应用程序的性能，因此在不必要的情况下不应过度使用。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
       </section>
 
       
@@ -184,8 +176,8 @@
     
     <div class="card-text">
       
-        <a href="/2023/03/21/%E5%89%8D%E7%AB%AFjs%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">js散碎点记录（不定时更新）</h2>
+        <a href="/2023/03/21/%E5%89%8D%E7%AB%AFcss%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">css散碎点记录（不定时更新）</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -193,20 +185,6 @@
   </article>
 </div>
           
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2023/03/03/%E5%89%8D%E7%AB%AF/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">对象的值不能被delete方法</h2>
-        </a>
-      
-      <div class="card-text--row">Older</div>
-    </div>
-  </article>
-</div>
           
         </nav>
       
