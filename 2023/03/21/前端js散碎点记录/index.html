@@ -6,11 +6,15 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="逻辑运算符 &amp;&amp; ｜｜ ！Undefined 、null、NaN、””、0、false都返回false 12var a &#x3D; 1 &amp;&amp; 2;document.write(a) &#x2F;&#x2F; 2  12var a &#x3D; 0 &amp;&amp; 1document.write(a) &#x2F;&#x2F; 0  12var a &#x3D; 1 &amp;&amp; false &amp;&amp; 1do">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2023/03/21/%E5%89%8D%E7%AB%AFjs%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="逻辑运算符 &amp;&amp; ｜｜ ！Undefined 、null、NaN、””、0、false都返回false 12var a &#x3D; 1 &amp;&amp; 2;document.write(a) &#x2F;&#x2F; 2  12var a &#x3D; 0 &amp;&amp; 1document.write(a) &#x2F;&#x2F; 0  12var a &#x3D; 1 &amp;&amp; false &amp;&amp; 1do">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-21T08:57:22.131Z">
+<meta property="article:modified_time" content="2023-03-22T13:46:28.117Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,9 +73,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-前端js散碎点记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-前端js散碎点记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/03/21/%E5%89%8D%E7%AB%AFjs%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" class="article-date">
   <time class="dt-published" datetime="2023-03-21T08:57:22.131Z" itemprop="datePublished">2023-03-21</time>
@@ -130,70 +132,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-前端css散碎点记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/21/%E5%89%8D%E7%AB%AFcss%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time class="dt-published" datetime="2023-03-21T08:20:17.250Z" itemprop="datePublished">2023-03-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="img图片空隙问题"><a href="#img图片空隙问题" class="headerlink" title="img图片空隙问题"></a>img图片空隙问题</h3><p>凡是带有inline的元素，都有文字特性有文字分隔符和空格</p>
-<h3 id="垂直方向父子元素margin问题-x2F-margin塌陷问题"><a href="#垂直方向父子元素margin问题-x2F-margin塌陷问题" class="headerlink" title="垂直方向父子元素margin问题&#x2F;margin塌陷问题"></a>垂直方向父子元素margin问题&#x2F;margin塌陷问题</h3><p>如果父元素margin-top为100px，子元素margin小于父元素margin。子元素不会相对于父元素向下，如果子元素margin大于父元素margin，子元素也不会相对父元素向下，反而带动父元素一起向下偏移。</p>
-<h4 id="如何触发一个BFC"><a href="#如何触发一个BFC" class="headerlink" title="如何触发一个BFC"></a>如何触发一个BFC</h4><ul>
-<li><pre><code>position:absolute;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  display:inline-block;</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-<li><pre><code>float:left/right;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  overflow:hidden;</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-</ul>
-<p>当触发了BFC就可以解决上方的问题了</p>
-<h3 id="浮动元素如何被看到"><a href="#浮动元素如何被看到" class="headerlink" title="浮动元素如何被看到"></a>浮动元素如何被看到</h3><p>每个产生了浮动流的元素，块级元素都看不到，产生了BFC的元素和文本类属性（inline）的元素以及文本都能看到浮动元素</p>
-<h3 id="padding的用处"><a href="#padding的用处" class="headerlink" title="padding的用处"></a>padding的用处</h3><p>文字不能放到padding内，但是背景颜色和背景图片可以放在padding内，可以用来将padding设置为容器高度，容器设置overflow:hidden;当容器背景图片被正常加载情况下，文字被隐藏，如果因为网络原因，图片没能加载，这时候文字会展示出来，这时候如果容器是个a标签，就仍然可以点击文字跳转</p>
-<h3 id="行级元素如何可以设置高度"><a href="#行级元素如何可以设置高度" class="headerlink" title="行级元素如何可以设置高度"></a>行级元素如何可以设置高度</h3><p>当设置了position:absolute;或者float:left&#x2F;right;就相当于将该元素的display设置成了inline-block</p>
-<h3 id="css属性值计算过程"><a href="#css属性值计算过程" class="headerlink" title="css属性值计算过程"></a>css属性值计算过程</h3><ul>
-<li><p>确定声明值（参考样式表中没有冲突重复的声明作为css属性值）</p>
-</li>
-<li><p>层叠冲突（样式表重复冲突的样式根据规则确定css属性值）</p>
-<ul>
-<li>比较重要性（作者样式表大于浏览器默认样式表）</li>
-<li>比较特殊性（比如css选择器权重大小）</li>
-<li>比较源次序（同一个样式后面的会覆盖前面的）</li>
-</ul>
-</li>
-<li><p>使用继承（此时还没有值的属性，如果可以继承，比如文字样式类，则继承父元素属性值）</p>
-</li>
-<li><p>使用默认值（最后还没有属性值，则使用默认值，比如背景颜色background-color）</p>
-</li>
-</ul>
+  
+    <a href="/2023/03/21/%E5%89%8D%E7%AB%AFcss%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/21/%E5%89%8D%E7%AB%AFcss%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" data-id="clfkpkoom0000fa284a6xaxbh" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
