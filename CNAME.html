@@ -26,7 +26,7 @@
 
   
 
-  <title>js散碎点记录（不定时更新） | airlatus</title>
+  <title>airlatus</title>
 
   
 
@@ -49,7 +49,7 @@
   <div class="root-container">
     
 <!-- header container -->
-<header class="header-container post">
+<header class="header-container">
   
     <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
   
@@ -95,145 +95,37 @@
 
   
   
-    <div class="header-content">
-      <div class="post-text layout-block">
-        <div class="layout-margin">
-          <h1 class="title-wrap">js散碎点记录（不定时更新）</h1>
-          <h2 class="title-sub-wrap">
-            <strong>airLatus</strong>
-            <span>发布于</span>
-            <time  class="article-date" datetime="2023-03-21T08:57:22.131Z" itemprop="datePublished">2023-03-21</time>
-          </h2>
-          
-            <h2 class="title-sub-wrap new-date">
-              <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-03-23T07:26:06.791Z" itemprop="dateUpdated">2023-03-23</time>
-            </h2>
-          
-          
-            <h2 id="/2023/03/21/%E5%89%8D%E7%AB%AFjs%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" class="title-sub-wrap leancloud_visitors" data-flag-title="js散碎点记录（不定时更新）">
-              <em>文章访问量</em>
-              <i class="leancloud-visitors-count"></i>
-            </h2>
-          
-          <ul class="wrap-list dark">
-  
-    <li><a href="/categories/javaScript/">📒 javaScript</a></li>
-  
-</ul>
-          <ul class="wrap-list dark">
-  
-    <li><a href="/tags/javaScript/">🏷️ javaScript</a></li>
-  
-</ul>
-        </div>
-      </div>
-    </div>
-  
 
   
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap"></h1>
+        
+      </div>
+    </div>
   
   
 </header>
 
-    <!-- 文章 -->
+    <!-- 分页(其他自定义页面) -->
 
-<!-- 文章内容 -->
+<!-- 自定义页面 -->
+
 <div class="body-container">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       
-      
-      
-      
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="逻辑运算符-amp-amp-｜｜-！"><a href="#逻辑运算符-amp-amp-｜｜-！" class="headerlink" title="逻辑运算符 &amp;&amp; ｜｜ ！"></a>逻辑运算符 &amp;&amp; ｜｜ ！</h3><p>Undefined 、null、NaN、””、0、false都返回false</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> &amp;&amp; <span class="number">2</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(a) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span> &amp;&amp; <span class="number">1</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(a) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> &amp;&amp; <span class="literal">false</span> &amp;&amp; <span class="number">1</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(a) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="使用parseInt、toString-转换进制"><a href="#使用parseInt、toString-转换进制" class="headerlink" title="使用parseInt、toString()转换进制"></a>使用parseInt、toString()转换进制</h3><p>将其他进制转化为10进制</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10101</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">parseInt</span>(a, <span class="number">2</span>) <span class="comment">// 将2进制的a转换成10进制赋值给b,b = 21</span></span><br></pre></td></tr></table></figure>
-
-<p>将10进制转换成其他进制</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">15</span></span><br><span class="line"><span class="keyword">var</span> b = a.<span class="title function_">toString</span>(<span class="number">16</span>) <span class="comment">// 将a转换成16进制，15的16进制为f </span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h3><blockquote>
-<p>1、先生成一个AO对象 AO {}</p>
-<p>2、找形参和变量声明，将变量声明和形参名作为AO属性名，值为undefined</p>
-<p>3、将实参值和形参统一</p>
-<p>4、在函数体内找<strong>函数声明</strong>，值赋予函数体</p>
-<p>注：函数声明如：function a() {}，值赋予函数体如：a: function a() {}</p>
-</blockquote>
-<p>预编译发生在函数执行的前一刻</p>
-<ul>
-<li>函数声明整体提升</li>
-<li>变量  声明提升</li>
-</ul>
-<h3 id="将伪数组转变成真数组"><a href="#将伪数组转变成真数组" class="headerlink" title="将伪数组转变成真数组"></a>将伪数组转变成真数组</h3><p>伪数组如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	<span class="number">0</span>: <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">	<span class="number">1</span>: <span class="string">&#x27;b&#x27;</span>,</span><br><span class="line">	<span class="attr">length</span>: <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以使用如下方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(obj) <span class="comment">// </span></span><br><span class="line"><span class="comment">// var arr = [].slice.call(obj)</span></span><br></pre></td></tr></table></figure>
-
-<p>可以使用arr.slice(0)对数组进行克隆</p>
+        <p>blog.airlatus.com</p>
 
       </section>
 
       
       
-        <nav class="article-nav">
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
+
       
-        <a href="/2023/03/23/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">博客搭建记录</h2>
-        </a>
       
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2023/03/21/%E5%89%8D%E7%AB%AFcss%E6%95%A3%E7%A2%8E%E7%82%B9%E8%AE%B0%E5%BD%95/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">css散碎点记录（不定时更新）</h2>
-        </a>
-      
-      <div class="card-text--row">Older</div>
-    </div>
-  </article>
-</div>
-          
-        </nav>
-      
-
-      <section class="page-message-container layout-padding">
-        
-
-
-  
-  
-
-  
-  
-
-
-      </section>
     </div>
     <div class="widget-info">
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -270,8 +162,6 @@
     </div>
   </div>
 </section>
-
-      
 
       
 
@@ -335,6 +225,7 @@
     </div>
   </article>
 </div>
+
 
     <!-- footer container -->
 <footer id="footer" class="footer">
