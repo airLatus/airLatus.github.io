@@ -107,7 +107,7 @@
           
             <h2 class="title-sub-wrap new-date">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-03-23T14:05:22.720Z" itemprop="dateUpdated">2023-03-23</time>
+              <time  class="article-updated" datetime="2023-04-06T15:47:43.720Z" itemprop="dateUpdated">2023-04-06</time>
             </h2>
           
           
@@ -147,7 +147,7 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>以下内容转自渡一教育</p>
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>以下内容转自渡一教育</p>
 <h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><h2 id="浏览器的进程模型"><a href="#浏览器的进程模型" class="headerlink" title="浏览器的进程模型"></a>浏览器的进程模型</h2><h3 id="何为进程？"><a href="#何为进程？" class="headerlink" title="何为进程？"></a>何为进程？</h3><p>程序运行需要有它自己专属的内存空间，可以把这块内存空间简单的理解为进程</p>
 <img src="http://mdrs.yuanjin.tech/img/202208092057573.png" alt="image-20220809205743532" style="zoom:50%;" />
 
@@ -176,7 +176,7 @@
 <p>渲染进程启动后，会开启一个<strong>渲染主线程</strong>，主线程负责执行 HTML、CSS、JS 代码。</p>
 <p>默认情况下，浏览器会为每个标签页开启一个新的渲染进程，以保证不同的标签页之间不相互影响。</p>
 <blockquote>
-<p>将来该默认模式可能会有所改变，有兴趣的同学可参见<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md#Modes-and-Availability">chrome官方说明文档</a></p>
+<p>将来该默认模式可能会有所改变，有兴趣的同学可参见<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md#Modes-and-Availability">chrome 官方说明文档</a></p>
 </blockquote>
 </li>
 </ol>
@@ -228,14 +228,14 @@
 <blockquote>
 <p>面试题：如何理解 JS 的异步？</p>
 <p>参考答案：</p>
-<p>JS是一门单线程的语言，这是因为它运行在浏览器的渲染主线程中，而渲染主线程只有一个。</p>
+<p>JS 是一门单线程的语言，这是因为它运行在浏览器的渲染主线程中，而渲染主线程只有一个。</p>
 <p>而渲染主线程承担着诸多的工作，渲染页面、执行 JS 都在其中运行。</p>
 <p>如果使用同步的方式，就极有可能导致主线程产生阻塞，从而导致消息队列中的很多其他任务无法得到执行。这样一来，一方面会导致繁忙的主线程白白的消耗时间，另一方面导致页面无法及时更新，给用户造成卡死现象。</p>
 <p>所以浏览器采用异步的方式来避免。具体做法是当某些任务发生时，比如计时器、网络、事件监听，主线程将任务交给其他线程去处理，自身立即结束任务的执行，转而执行后续代码。当其他线程完成时，将事先传递的回调函数包装成任务，加入到消息队列的末尾排队，等待主线程调度执行。</p>
 <p>在这种异步模式下，浏览器永不阻塞，从而最大限度的保证了单线程的流畅运行。</p>
 </blockquote>
-<h3 id="JS为何会阻碍渲染？"><a href="#JS为何会阻碍渲染？" class="headerlink" title="JS为何会阻碍渲染？"></a>JS为何会阻碍渲染？</h3><p>先看代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Mr.Yuan is awesome!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>change<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> h1 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;h1&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 死循环指定的时间</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">duration</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> start = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">while</span> (<span class="title class_">Date</span>.<span class="title function_">now</span>() - start &lt; duration) &#123;&#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  btn.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    h1.<span class="property">textContent</span> = <span class="string">&#x27;袁老师很帅！&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">delay</span>(<span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="JS-为何会阻碍渲染？"><a href="#JS-为何会阻碍渲染？" class="headerlink" title="JS 为何会阻碍渲染？"></a>JS 为何会阻碍渲染？</h3><p>先看代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Mr.Yuan is awesome!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>change<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> h1 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;h1&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 死循环指定的时间</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">duration</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> start = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">while</span> (<span class="title class_">Date</span>.<span class="title function_">now</span>() - start &lt; duration) &#123;&#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  btn.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    h1.<span class="property">textContent</span> = <span class="string">&quot;袁老师很帅！&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">delay</span>(<span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>点击按钮后，会发生什么呢？</p>
 <p>&lt;见具体演示&gt;</p>
@@ -258,7 +258,7 @@
 <blockquote>
 <p>添加任务到微队列的主要方式主要是使用 Promise、MutationObserver</p>
 <p>例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 立即把一个函数添加到微队列</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(函数)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 立即把一个函数添加到微队列</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(函数);</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>浏览器还有很多其他的队列，由于和我们开发关系不大，不作考虑</p>
@@ -338,19 +338,19 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>9</span>
+        <span>10</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
 </svg>
-        7
+        10
       </div>
       <div class="count-box--item">
         <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
 </svg>
-        7
+        10
       </div>
     </div>
   </div>
@@ -377,14 +377,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/javaScript/">
-            javaScript (2)
+          <a href="/categories/browser/">
+            browser (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/browser/">
-            browser (1)
+          <a href="/categories/javaScript/">
+            javaScript (2)
           </a>
         </li>
       
@@ -412,6 +412,24 @@
           </a>
         </li>
       
+        <li class="categorys-list-item">
+          <a href="/categories/Vue/">
+            Vue (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Vue/Vue3/">
+            Vue3 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Vue/Vue3/Vite/">
+            Vite (1)
+          </a>
+        </li>
+      
     </ul>
   </div>
 </section>
@@ -425,7 +443,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/IoT%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;" class="tags-cloud-0">IoT小程序</a> <a href="/tags/Web/" style="font-size: 10px;" class="tags-cloud-0">Web</a> <a href="/tags/blog/" style="font-size: 10px;" class="tags-cloud-0">blog</a> <a href="/tags/browser/" style="font-size: 10px;" class="tags-cloud-0">browser</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/git/" style="font-size: 10px;" class="tags-cloud-0">git</a> <a href="/tags/javaScript/" style="font-size: 20px;" class="tags-cloud-10">javaScript</a>
+      <a href="/tags/IoT%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;" class="tags-cloud-0">IoT小程序</a> <a href="/tags/Vite/" style="font-size: 10px;" class="tags-cloud-0">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;" class="tags-cloud-0">Vue</a> <a href="/tags/Vue3/" style="font-size: 10px;" class="tags-cloud-0">Vue3</a> <a href="/tags/Web/" style="font-size: 10px;" class="tags-cloud-0">Web</a> <a href="/tags/blog/" style="font-size: 10px;" class="tags-cloud-0">blog</a> <a href="/tags/browser/" style="font-size: 10px;" class="tags-cloud-0">browser</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/git/" style="font-size: 10px;" class="tags-cloud-0">git</a> <a href="/tags/javaScript/" style="font-size: 20px;" class="tags-cloud-10">javaScript</a>
     </div>
   </div>
 </section>

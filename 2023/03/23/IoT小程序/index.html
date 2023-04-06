@@ -105,6 +105,11 @@
             <time  class="article-date" datetime="2023-03-23T08:41:49.405Z" itemprop="datePublished">2023-03-23</time>
           </h2>
           
+            <h2 class="title-sub-wrap new-date">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2023-04-06T15:47:01.057Z" itemprop="dateUpdated">2023-04-06</time>
+            </h2>
+          
           
             <h2 id="/2023/03/23/IoT%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="title-sub-wrap leancloud_visitors" data-flag-title="支付宝IoT小程序开发流程">
               <em>文章访问量</em>
@@ -142,13 +147,16 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="支付宝副屏小程序"><a href="#支付宝副屏小程序" class="headerlink" title="支付宝副屏小程序"></a>支付宝副屏小程序</h1><blockquote>
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><blockquote>
+<p>此为前公司实际项目，文章将逻辑省略，主要描述 IoT 小程序的部分专属 api 和发布上线流程等。</p>
+</blockquote>
+<h1 id="支付宝副屏小程序"><a href="#支付宝副屏小程序" class="headerlink" title="支付宝副屏小程序"></a>支付宝副屏小程序</h1><blockquote>
 <p>目前搭载小程序的设备存在三种类型：双屏竖屏设备、双屏横屏设备、单屏竖屏设备</p>
 <blockquote>
 <p>双屏的横竖屏样式存在差异，功能基本一致；单屏相较双屏缺少自助辅助和客显功能，增加激活、应用管理、交易记录功能</p>
 </blockquote>
 </blockquote>
-<h3 id="判断单双屏设备"><a href="#判断单双屏设备" class="headerlink" title="判断单双屏设备"></a>判断单双屏设备</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">my.<span class="property">ix</span>.<span class="title function_">getIoTSystemInfo</span>(&#123;</span><br><span class="line">	<span class="attr">success</span>: <span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 判断设备是否是双屏设备 r.multiScreen</span></span><br><span class="line">    		<span class="comment">// 单双屏判断存入vuex</span></span><br><span class="line">        <span class="keyword">if</span> (r.<span class="property">multiScreen</span>) &#123;</span><br><span class="line">        <span class="comment">// 双屏逻辑</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 单屏逻辑</span></span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="判断单双屏设备"><a href="#判断单双屏设备" class="headerlink" title="判断单双屏设备"></a>判断单双屏设备</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">my.<span class="property">ix</span>.<span class="title function_">getIoTSystemInfo</span>(&#123;</span><br><span class="line">  <span class="attr">success</span>: <span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 判断设备是否是双屏设备 r.multiScreen</span></span><br><span class="line">    <span class="comment">// 单双屏判断存入vuex</span></span><br><span class="line">    <span class="keyword">if</span> (r.<span class="property">multiScreen</span>) &#123;</span><br><span class="line">      <span class="comment">// 双屏逻辑</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 单屏逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="双屏设备"><a href="#双屏设备" class="headerlink" title="双屏设备"></a>双屏设备</h2><blockquote>
 <p>主屏：收银员或店员操作的屏幕，上面搭载的一般是安卓应用</p>
@@ -158,17 +166,22 @@
 </blockquote>
 <h3 id="呈现样式"><a href="#呈现样式" class="headerlink" title="呈现样式"></a>呈现样式</h3><p><strong>注</strong>：开发时需要注意更改的内容<strong>是否需要适配横屏</strong>设备，不确定的话，可以咨询产品</p>
 <ul>
-<li>横竖屏适配，用的是媒体查询实现，<code>UI</code>样式见底部<strong>蓝湖地址</strong><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 竖屏</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">orientation</span>: portrait) &#123;</span><br><span class="line">    <span class="comment">// 竖屏中，横屏的部分样式需要隐藏</span></span><br><span class="line">    <span class="selector-class">.landscape-show</span> &#123; </span><br><span class="line">    	<span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 横屏</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">orientation</span>: landscape) &#123;</span><br><span class="line">    <span class="comment">// 横屏中，竖屏的部分样式需要隐藏</span></span><br><span class="line">    <span class="selector-class">.landscape-hide</span> &#123;</span><br><span class="line">    	<span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>横竖屏适配，用的是媒体查询实现，<code>UI</code>样式见底部<strong>蓝湖地址</strong></li>
 </ul>
-<h3 id="主副屏交互-数据传输"><a href="#主副屏交互-数据传输" class="headerlink" title="主副屏交互(数据传输)"></a>主副屏交互(数据传输)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 副屏发送指令方法</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">sendBuddyMessage</span>(&#123;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 副屏接受指令方法</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">onBuddyMessage</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 竖屏</span></span><br><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">orientation</span>: portrait) &#123;</span><br><span class="line">  <span class="comment">// 竖屏中，横屏的部分样式需要隐藏</span></span><br><span class="line">  <span class="selector-class">.landscape-show</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 横屏</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">orientation</span>: landscape) &#123;</span><br><span class="line">  <span class="comment">// 横屏中，竖屏的部分样式需要隐藏</span></span><br><span class="line">  <span class="selector-class">.landscape-hide</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主副屏交互-数据传输"><a href="#主副屏交互-数据传输" class="headerlink" title="主副屏交互(数据传输)"></a>主副屏交互(数据传输)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 副屏发送指令方法</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">sendBuddyMessage</span>(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 副屏接受指令方法</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">onBuddyMessage</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>在启动时，先由副屏发送指令</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">sendBuddyMessage</span>(&#123;</span><br><span class="line">      <span class="attr">target</span>: <span class="string">&#x27;nativeBuddyHost&#x27;</span>,</span><br><span class="line">      <span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="attr">command</span>: <span class="string">&#x27;initApplet&#x27;</span>,</span><br><span class="line">        <span class="attr">msg</span>: <span class="string">&#x27;获取启动参数&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">success</span>: <span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">fail</span>: <span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>主屏应用接受到副屏获取启动参数指令后，发送副屏需要的初始化数据，包括后续调用接口用到的<code>baseUrl</code>、<code>tenant</code>等；将初始化数据存入<code>vuex</code>，然后调用一系列初始化接口</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">onBuddyMessage</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (r.<span class="property">command</span> === <span class="string">&#x27;initApplet&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 初始化数据存入vuex</span></span><br><span class="line">        <span class="comment">// 初始化接口操作等</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>在启动时，先由副屏发送指令</li>
 </ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">sendBuddyMessage</span>(&#123;</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;nativeBuddyHost&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">command</span>: <span class="string">&quot;initApplet&quot;</span>,</span><br><span class="line">    <span class="attr">msg</span>: <span class="string">&quot;获取启动参数&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">success</span>: <span class="function">(<span class="params">r</span>) =&gt;</span> &#123;&#125;,</span><br><span class="line">  <span class="attr">fail</span>: <span class="function">(<span class="params">r</span>) =&gt;</span> &#123;&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主屏应用接受到副屏获取启动参数指令后，发送副屏需要的初始化数据，包括后续调用接口用到的<code>baseUrl</code>、<code>tenant</code>等；将初始化数据存入<code>vuex</code>，然后调用一系列初始化接口</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line">my.<span class="property">ix</span>.<span class="title function_">onBuddyMessage</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (r.<span class="property">command</span> === <span class="string">&quot;initApplet&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// 初始化数据存入vuex</span></span><br><span class="line">    <span class="comment">// 初始化接口操作等</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><h4 id="自助功能（最常用的功能，基础）"><a href="#自助功能（最常用的功能，基础）" class="headerlink" title="自助功能（最常用的功能，基础）"></a>自助功能（最常用的功能，基础）</h4><blockquote>
 <p>自助就是在无店员操作主屏时，顾客可以自己去操作副屏，完成会员登录，选购商品，完成结算等功能</p>
 </blockquote>
@@ -202,14 +215,17 @@
 </li>
 </ul>
 <h2 id="单屏设备"><a href="#单屏设备" class="headerlink" title="单屏设备"></a>单屏设备</h2><h3 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h3><ul>
-<li><p>单屏设备不同于双屏，无法使用<code>my.ix.onBuddyMessage</code>去接受扫码内容，单屏设备监听扫码需要使用<code>my.ix.onBarcodeScan</code>方法</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my.<span class="property">ix</span>.<span class="title function_">onBarcodeScan</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> &#123;&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>因为单屏设备启动时没有主屏传递初始化数据（不知道<code>baseUrl</code>等），因此我们将<code>baseUrl</code>等单屏所需数据配置在<code>config.ts</code>文件里</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config.ts</span></span><br><span class="line"><span class="keyword">const</span> devConfig = &#123;</span><br><span class="line">  <span class="attr">env</span>: <span class="string">&#x27;dev&#x27;</span>,</span><br><span class="line">  <span class="attr">appId</span>: <span class="string">&#x27;xxxxxxx&#x27;</span>,</span><br><span class="line">  <span class="attr">tenant</span>: <span class="string">&#x27;xxxxxxx&#x27;</span>,</span><br><span class="line">  <span class="attr">baseUrl</span>: <span class="string">&#x27;https://xxx.xxxx.com/&#x27;</span>,</span><br><span class="line">  <span class="attr">logBaseUrl</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span> ? <span class="string">&#x27;https://xxxx.com:9999/track/&#x27;</span> : <span class="string">&#x27;https://xxxx.com:9999/track/test/&#x27;</span>,</span><br><span class="line">  <span class="attr">actBaseUrl</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span> ? <span class="string">&#x27;https://xxxx.com/&#x27;</span> : <span class="string">&#x27;https://xxxx.com/&#x27;</span>,</span><br><span class="line">  <span class="attr">accessKeyId</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span> ? <span class="string">&#x27;xxxx&#x27;</span> : <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">  <span class="attr">secret</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span> ? <span class="string">&#x27;xxxx&#x27;</span> : <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在单屏的初始激活界面，首先获取一下缓存，若存在缓存则直接调用激活接口，若不存在缓存则需要手动输入激活码或扫码激活，激活成功后，将激活成功返回的基础数据，整合成类似双屏时主屏发送给副屏的初始化信息存到<code>vuex</code>内，然后调用和双屏相同的初始化接口，调用初始化接口成功，缓存此次激活码，跳转到首页</p>
-</li>
+<li>单屏设备不同于双屏，无法使用<code>my.ix.onBuddyMessage</code>去接受扫码内容，单屏设备监听扫码需要使用<code>my.ix.onBarcodeScan</code>方法</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my.<span class="property">ix</span>.<span class="title function_">onBarcodeScan</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>因为单屏设备启动时没有主屏传递初始化数据（不知道<code>baseUrl</code>等），因此我们将<code>baseUrl</code>等单屏所需数据配置在<code>config.ts</code>文件里</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config.ts</span></span><br><span class="line"><span class="keyword">const</span> devConfig = &#123;</span><br><span class="line">  <span class="attr">env</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">  <span class="attr">appId</span>: <span class="string">&quot;xxxxxxx&quot;</span>,</span><br><span class="line">  <span class="attr">tenant</span>: <span class="string">&quot;xxxxxxx&quot;</span>,</span><br><span class="line">  <span class="attr">baseUrl</span>: <span class="string">&quot;https://xxx.xxxx.com/&quot;</span>,</span><br><span class="line">  <span class="attr">logBaseUrl</span>:</span><br><span class="line">    process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span></span><br><span class="line">      ? <span class="string">&quot;https://xxxx.com:9999/track/&quot;</span></span><br><span class="line">      : <span class="string">&quot;https://xxxx.com:9999/track/test/&quot;</span>,</span><br><span class="line">  <span class="attr">actBaseUrl</span>:</span><br><span class="line">    process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span></span><br><span class="line">      ? <span class="string">&quot;https://xxxx.com/&quot;</span></span><br><span class="line">      : <span class="string">&quot;https://xxxx.com/&quot;</span>,</span><br><span class="line">  <span class="attr">accessKeyId</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span> ? <span class="string">&quot;xxxx&quot;</span> : <span class="string">&quot;xxxx&quot;</span>,</span><br><span class="line">  <span class="attr">secret</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span> ? <span class="string">&quot;xxxx&quot;</span> : <span class="string">&quot;xxxx&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在单屏的初始激活界面，首先获取一下缓存，若存在缓存则直接调用激活接口，若不存在缓存则需要手动输入激活码或扫码激活，激活成功后，将激活成功返回的基础数据，整合成类似双屏时主屏发送给副屏的初始化信息存到<code>vuex</code>内，然后调用和双屏相同的初始化接口，调用初始化接口成功，缓存此次激活码，跳转到首页</li>
 </ul>
 <h2 id="小票打印"><a href="#小票打印" class="headerlink" title="小票打印"></a>小票打印</h2><ul>
 <li>双屏设备打印小票是通过接口获取打印内容，由副屏发送指令给主屏，主屏应用操作完成打印</li>
@@ -218,23 +234,23 @@
 <h2 id="开发调试"><a href="#开发调试" class="headerlink" title="开发调试"></a>开发调试</h2><ul>
 <li>运行：<code>yarn dev:mp-alipay</code></li>
 <li>单屏</li>
-<li>开发者工具内<code>app.json</code>文件的window内添加参数：<br>  <code>ABCPConfig</code>是使用<code>my.ix.startBpaasService</code>新刷脸组件必须传的参数</li>
+<li>开发者工具内<code>app.json</code>文件的 window 内添加参数：<br><code>ABCPConfig</code>是使用<code>my.ix.startBpaasService</code>新刷脸组件必须传的参数</li>
 </ul>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;ABCPConfig&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>单屏&#x2F;蜻蜓小程序启动：进入系统 <strong>设置</strong> 页，点击 <strong>关于本机</strong> ，再连续点击 8 次 <strong>小程序容器</strong> 打开小程序配置，进入 <strong>支付宝</strong><strong><code>IoT</code>*<em><strong>小程序设置</strong> 页面，点击 <strong>进入开发者模式</strong>。</em>*开发者模式</strong> 是指蜻蜓设备的开发调试模式，进入该模式后，蜻蜓设备可以被小程序开发者工具（<code>IDE</code>）识别为在线状态，<code>IoT</code> 小程序可以推送到设备上进行调试。</li>
+<li>单屏&#x2F;蜻蜓小程序启动：进入系统 <strong>设置</strong> 页，点击 <strong>关于本机</strong> ，再连续点击 8 次 <strong>小程序容器</strong> 打开小程序配置，进入 <strong>支付宝**</strong><code>IoT</code>*<strong>*小程序设置</strong> 页面，点击 <strong>进入开发者模式</strong>。<strong>开发者模式</strong> 是指蜻蜓设备的开发调试模式，进入该模式后，蜻蜓设备可以被小程序开发者工具（<code>IDE</code>）识别为在线状态，<code>IoT</code> 小程序可以推送到设备上进行调试。</li>
 <li>打开小程序开发者工具，选择支付宝<code>IoT</code>小程序，选择测试小程序，选择上面开启开发者模式的设备（若上一步启动成功，设备应显示在线），点击预览或调试</li>
 <li>双屏</li>
-<li>开发者工具内<code>app.json</code>文件的window内添加参数：<br>  <code>ABCPConfig</code>是使用<code>my.ix.startBpaasService</code>新刷脸组件必须传的参数</li>
+<li>开发者工具内<code>app.json</code>文件的 window 内添加参数：<br><code>ABCPConfig</code>是使用<code>my.ix.startBpaasService</code>新刷脸组件必须传的参数</li>
 </ul>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;extScreenApp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;YES&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;ABCPConfig&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>启动主屏的调试应用：支付宝-Demo，依次点击Applet副屏小程序、启动<code>Iot</code>小程序、发送启动参数、推送客户屏小程序（可调试）用于开发，点击完以上后，开发者工具中会显示该设备在线，即可点击预览或调试。</li>
+<li>启动主屏的调试应用：支付宝-Demo，依次点击 Applet 副屏小程序、启动<code>Iot</code>小程序、发送启动参数、推送客户屏小程序（可调试）用于开发，点击完以上后，开发者工具中会显示该设备在线，即可点击预览或调试。</li>
 </ul>
 <h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h3><ul>
-<li>1、可以使用demo模拟流程或</li>
+<li>1、可以使用 demo 模拟流程或</li>
 <li>2、上传小程序到测试小程序，让产品提审，通过后分发到设备，在设备上使用<code>APOS</code>调起小程序（此流程耗时偏长，测试人员一般使用这个方法）</li>
 </ul>
 <h3 id="上传小程序"><a href="#上传小程序" class="headerlink" title="上传小程序"></a>上传小程序</h3><ul>
@@ -248,7 +264,7 @@
 <li>发布完成后，告知产品提审，审核通过后让产品帮忙分发到设备</li>
 </ul>
 <h3 id="小程序的其他参数获取"><a href="#小程序的其他参数获取" class="headerlink" title="小程序的其他参数获取"></a>小程序的其他参数获取</h3><ul>
-<li>小程序在进入海报首页后会调用获取配置的接口，这些参数是通过bop中台进行配置，需要如何配置可以咨询产品</li>
+<li>小程序在进入海报首页后会调用获取配置的接口，这些参数是通过 bop 中台进行配置，需要如何配置可以咨询产品</li>
 </ul>
 <h3 id="小程序的启动参数配置"><a href="#小程序的启动参数配置" class="headerlink" title="小程序的启动参数配置"></a>小程序的启动参数配置</h3><ul>
 <li>小程序和主屏首次交互获取的<code>baseUrl</code>等初始化参数在<code>BO</code>上配置，详情可咨询产品</li>
@@ -269,7 +285,7 @@
 <li>基本同单屏小程序</li>
 </ul>
 <h1 id="纯客显小程序"><a href="#纯客显小程序" class="headerlink" title="纯客显小程序"></a>纯客显小程序</h1><ul>
-<li>产品xx的客显小程序（略）（和自助的客显相同）</li>
+<li>产品 xx 的客显小程序（略）（和自助的客显相同）</li>
 <li>联华的客显（略）（联华客显好像也区分横竖屏）</li>
 </ul>
 
@@ -278,6 +294,20 @@
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2023/03/31/vite&vue3/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Vite &amp; Vue3</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -328,19 +358,19 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>9</span>
+        <span>10</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
 </svg>
-        7
+        10
       </div>
       <div class="count-box--item">
         <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
 </svg>
-        7
+        10
       </div>
     </div>
   </div>
@@ -367,14 +397,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/javaScript/">
-            javaScript (2)
+          <a href="/categories/browser/">
+            browser (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/browser/">
-            browser (1)
+          <a href="/categories/javaScript/">
+            javaScript (2)
           </a>
         </li>
       
@@ -402,6 +432,24 @@
           </a>
         </li>
       
+        <li class="categorys-list-item">
+          <a href="/categories/Vue/">
+            Vue (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Vue/Vue3/">
+            Vue3 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Vue/Vue3/Vite/">
+            Vite (1)
+          </a>
+        </li>
+      
     </ul>
   </div>
 </section>
@@ -415,7 +463,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/IoT%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;" class="tags-cloud-0">IoT小程序</a> <a href="/tags/Web/" style="font-size: 10px;" class="tags-cloud-0">Web</a> <a href="/tags/blog/" style="font-size: 10px;" class="tags-cloud-0">blog</a> <a href="/tags/browser/" style="font-size: 10px;" class="tags-cloud-0">browser</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/git/" style="font-size: 10px;" class="tags-cloud-0">git</a> <a href="/tags/javaScript/" style="font-size: 20px;" class="tags-cloud-10">javaScript</a>
+      <a href="/tags/IoT%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;" class="tags-cloud-0">IoT小程序</a> <a href="/tags/Vite/" style="font-size: 10px;" class="tags-cloud-0">Vite</a> <a href="/tags/Vue/" style="font-size: 10px;" class="tags-cloud-0">Vue</a> <a href="/tags/Vue3/" style="font-size: 10px;" class="tags-cloud-0">Vue3</a> <a href="/tags/Web/" style="font-size: 10px;" class="tags-cloud-0">Web</a> <a href="/tags/blog/" style="font-size: 10px;" class="tags-cloud-0">blog</a> <a href="/tags/browser/" style="font-size: 10px;" class="tags-cloud-0">browser</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/git/" style="font-size: 10px;" class="tags-cloud-0">git</a> <a href="/tags/javaScript/" style="font-size: 20px;" class="tags-cloud-10">javaScript</a>
     </div>
   </div>
 </section>
