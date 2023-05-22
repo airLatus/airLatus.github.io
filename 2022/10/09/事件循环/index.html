@@ -107,7 +107,7 @@
           
             <h2 class="title-sub-wrap new-date">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-04-06T15:47:43.720Z" itemprop="dateUpdated">2023-04-06</time>
+              <time  class="article-updated" datetime="2023-05-22T05:02:05.347Z" itemprop="dateUpdated">2023-05-22</time>
             </h2>
           
           
@@ -149,18 +149,17 @@
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>以下内容转自渡一教育</p>
 <h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><h2 id="浏览器的进程模型"><a href="#浏览器的进程模型" class="headerlink" title="浏览器的进程模型"></a>浏览器的进程模型</h2><h3 id="何为进程？"><a href="#何为进程？" class="headerlink" title="何为进程？"></a>何为进程？</h3><p>程序运行需要有它自己专属的内存空间，可以把这块内存空间简单的理解为进程</p>
-<img src="http://mdrs.yuanjin.tech/img/202208092057573.png" alt="image-20220809205743532" style="zoom:50%;" />
-
+<p><img src="/2022/10/09/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/202208092057573-20230522125959095.png" alt="image-20220809210859457"></p>
 <p>每个应用至少有一个进程，进程之间相互独立，即使要通信，也需要双方同意。</p>
 <h3 id="何为线程？"><a href="#何为线程？" class="headerlink" title="何为线程？"></a>何为线程？</h3><p>有了进程后，就可以运行程序的代码了。</p>
 <p>运行代码的「人」称之为「线程」。</p>
 <p>一个进程至少有一个线程，所以在进程开启后会自动创建一个线程来运行代码，该线程称之为主线程。</p>
 <p>如果程序需要同时执行多块代码，主线程就会启动更多的线程来执行代码，所以一个进程中可以包含多个线程。</p>
-<p><img src="http://mdrs.yuanjin.tech/img/202208092108499.png" alt="image-20220809210859457"></p>
+<p><img src="/2022/10/09/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/202208092108499-20230522125959044.png" alt="image-20220809210859457"></p>
 <h3 id="浏览器有哪些进程和线程？"><a href="#浏览器有哪些进程和线程？" class="headerlink" title="浏览器有哪些进程和线程？"></a>浏览器有哪些进程和线程？</h3><p><strong>浏览器是一个多进程多线程的应用程序</strong></p>
 <p>浏览器内部工作极其复杂。</p>
 <p>为了避免相互影响，为了减少连环崩溃的几率，当启动浏览器后，它会自动启动多个进程。</p>
-<p><img src="http://mdrs.yuanjin.tech/img/202208092131410.png" alt="image-20220809213152371"></p>
+<p><img src="/2022/10/09/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/202208092131410-20230522125959046.png" alt="image-20220809213152371"></p>
 <blockquote>
 <p>可以在浏览器的任务管理器中查看当前的所有进程</p>
 </blockquote>
@@ -205,7 +204,7 @@
 <li>……</li>
 </ul>
 <p>渲染主线程想出了一个绝妙的主意来处理这个问题：排队</p>
-<p><img src="http://mdrs.yuanjin.tech/img/202208092230847.png" alt="image-20220809223027806"></p>
+<p><img src="/2022/10/09/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/202208092230847-20230522125959071.png" alt="image-20220809223027806"></p>
 <ol>
 <li>在最开始的时候，渲染主线程会进入一个无限循环</li>
 <li>每一次循环会检查消息队列中是否有任务存在。如果有，就取出第一个任务执行，执行完一个后进入下一次循环；如果没有，则进入休眠状态。</li>
@@ -220,10 +219,10 @@
 <li>用户操作后需要执行的任务 – <code>addEventListener</code></li>
 </ul>
 <p>如果让渲染主线程等待这些任务的时机达到，就会导致主线程长期处于「阻塞」的状态，从而导致浏览器「卡死」</p>
-<p><img src="http://mdrs.yuanjin.tech/img/202208101043348.png" alt="image-20220810104344296"></p>
+<p><img src="/2022/10/09/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/202208101043348-20230522125959013.png" alt="image-20220810104344296"></p>
 <p><strong>渲染主线程承担着极其重要的工作，无论如何都不能阻塞！</strong></p>
 <p>因此，浏览器选择<strong>异步</strong>来解决这个问题</p>
-<p><img src="http://mdrs.yuanjin.tech/img/202208101048899.png" alt="image-20220810104858857"></p>
+<p><img src="/2022/10/09/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/202208101048899-20230522125959066.png" alt="image-20220810104858857"></p>
 <p>使用异步的方式，<strong>渲染主线程永不阻塞</strong></p>
 <blockquote>
 <p>面试题：如何理解 JS 的异步？</p>
