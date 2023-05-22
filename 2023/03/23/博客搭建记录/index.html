@@ -107,7 +107,7 @@
           
             <h2 class="title-sub-wrap new-date">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-05-22T04:03:26.329Z" itemprop="dateUpdated">2023-05-22</time>
+              <time  class="article-updated" datetime="2023-05-22T05:21:27.997Z" itemprop="dateUpdated">2023-05-22</time>
             </h2>
           
           
@@ -189,6 +189,20 @@
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>后续更新时发现会报：<code>command not found hexo</code></p>
 <p>经过排查发现是因为上次更新后我将电脑默认node版本修改为了16的版本，原来安装hexo时node版本是12的版本</p>
 <p>需要用<code>nvm use 12</code>将node版本切换回12的版本就可以使用hexo指令了</p>
+<h2 id="图片上传问题"><a href="#图片上传问题" class="headerlink" title="图片上传问题"></a>图片上传问题</h2><p>因为博客以md文档形式放在source文件夹下的post文件夹内，在上传博客后无法解析相对路径，我们需要通过以下方法修改上传博客的图片格式</p>
+<h3 id="修改typora中的文件存放路径"><a href="#修改typora中的文件存放路径" class="headerlink" title="修改typora中的文件存放路径"></a>修改typora中的文件存放路径</h3><p>我们在复制图片到正在编辑的typora中时，需要配置图片另存为路径，并设置显示在这个正在编辑的文档的相对路径文件夹中</p>
+<p><img src="/2023/03/23/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/image-20230522130957784.png" alt="image-20230522130957784"></p>
+<p>这样配置后，将图片复制过来时会自动创建出一个同文件名的图片存放文件夹，将图片自动保存在这个文件夹中，并且修改文档中文件的路径</p>
+<p><img src="/2023/03/23/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/image-20230522131237658.png" alt="image-20230522131237658"></p>
+<p><img src="/2023/03/23/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/image-20230522131210618.png" alt="image-20230522131210618"></p>
+<h3 id="将图片路径前缀去除"><a href="#将图片路径前缀去除" class="headerlink" title="将图片路径前缀去除"></a>将图片路径前缀去除</h3><p>为了后续使用hexo指令上传文档后转换成html后地址正确，需要将刚才的路径地址的文件名&#x2F;去除</p>
+<p><img src="/2023/03/23/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/image-20230522131421825.png" alt="image-20230522131421825"></p>
+<p>去除后图片就无法正常在本文件中显示了，这时可以设置改文件的图片根路径为图片文件夹，这样本md文件中就可以正常显示图片了</p>
+<p><img src="/2023/03/23/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/image-20230522131733680.png" alt="image-20230522131733680"></p>
+<h3 id="博客添加插件"><a href="#博客添加插件" class="headerlink" title="博客添加插件"></a>博客添加插件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>并将<code>_config.yml</code>文件中的设置改为<code>post_asset_folder: true</code></p>
+<p>这么做的目的是在打包上传博客到线上时，能够将外部图片生成为html可识别的路径从而在线上环境仍可以展示图片出来</p>
 <h2 id="参考hexo样式"><a href="#参考hexo样式" class="headerlink" title="参考hexo样式"></a>参考hexo样式</h2><p><a target="_blank" rel="noopener" href="https://github.com/miiiku/hexo-theme-flexblock">https://github.com/miiiku/hexo-theme-flexblock</a></p>
 
       </section>
