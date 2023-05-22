@@ -107,7 +107,7 @@
           
             <h2 class="title-sub-wrap new-date">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2023-04-06T15:47:37.456Z" itemprop="dateUpdated">2023-04-06</time>
+              <time  class="article-updated" datetime="2023-05-22T05:32:47.151Z" itemprop="dateUpdated">2023-05-22</time>
             </h2>
           
           
@@ -154,7 +154,7 @@
 <li>BOM：Browser Object Model，浏览器模型，提供和浏览器相关的操作</li>
 <li>DOM：Document Object Model，文档模型，提供和页面相关的操作</li>
 </ul>
-<img src="http://mdrs.yuanjin.tech/img/20211215154644.png" alt="image-20211215154639275" style="zoom:50%;">
+<img src="/2023/03/06/WebAPI/20211215154644.png" alt="image-20211215154639275" style="zoom:50%;">
 
 <h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h2><p>BOM 提供了一系列的对象和函数，提供和浏览器本身相关的操作</p>
 <h3 id="window"><a href="#window" class="headerlink" title="window"></a>window</h3><p>全局对象</p>
@@ -301,7 +301,7 @@
 </tr>
 </tbody></table>
 <h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>DOM 是一个对象，它对应到 HTML 中的节点</p>
-<img src="http://mdrs.yuanjin.tech/img/20211215164209.png" alt="image-20211215164209559" style="zoom:50%;">
+<img src="/2023/03/06/WebAPI/20211215164209.png" alt="image-20211215164209559" style="zoom:50%;">
 
 <h3 id="获取-dom"><a href="#获取-dom" class="headerlink" title="获取 dom"></a>获取 dom</h3><table>
 <thead>
@@ -656,11 +656,11 @@
 <p>如果我们要阻止浏览器的默认行为，就需要在对应时间中加入以下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e为事件对象</span></span><br><span class="line">e.<span class="title function_">preventDefault</span>();</span><br></pre></td></tr></table></figure>
 
-<h4 id="dom-尺寸和位置"><a href="#dom-尺寸和位置" class="headerlink" title="dom 尺寸和位置"></a>dom 尺寸和位置</h4><img src="http://mdrs.yuanjin.tech/img/20211216104505.png" alt="尺寸1" style="zoom:50%;">
+<h4 id="dom-尺寸和位置"><a href="#dom-尺寸和位置" class="headerlink" title="dom 尺寸和位置"></a>dom 尺寸和位置</h4><img src="/2023/03/06/WebAPI/20211216104505.png" alt="尺寸1" style="zoom:50%;">
 
-<p><img src="http://mdrs.yuanjin.tech/img/20220406223123.png" alt="尺寸2"></p>
-<p><img src="http://mdrs.yuanjin.tech/img/20220213212313.png" alt="尺寸3"></p>
-<img src="http://mdrs.yuanjin.tech/img/20211216104405.jpg" alt="尺寸4" style="zoom:50%;">
+<p><img src="/2023/03/06/WebAPI/20220406223123.png" alt="尺寸2"></p>
+<p><img src="/2023/03/06/WebAPI/20220213212313.png" alt="尺寸3"></p>
+<img src="/2023/03/06/WebAPI/20211216104405.jpg" alt="尺寸4" style="zoom:50%;">
 
 <blockquote>
 <p>调用<code>dom.scrollTo(x, y)</code>可以设置元素的滚动位置，x 和 y 分别表示 scrollLeft 和 scrollTop</p>
@@ -668,11 +668,11 @@
 <p>如果要监听元素的滚动，可以监听事件类型：&#x3D;&#x3D;scroll&#x3D;&#x3D;</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect">Element.getBoundingClientRect()</a></p>
-<p><img src="http://mdrs.yuanjin.tech/img/202210151248555.png" alt="element-box-diagram"></p>
+<p><img src="/2023/03/06/WebAPI/202210151248555.png" alt="element-box-diagram"></p>
 <blockquote>
 <p>上图中的 top、left、right、bottom 均相对于视口</p>
 </blockquote>
-<h4 id="事件传播机制"><a href="#事件传播机制" class="headerlink" title="事件传播机制"></a>事件传播机制</h4><img src="http://mdrs.yuanjin.tech/img/20211216105521.jpg" alt="事件流" style="zoom: 50%;">
+<h4 id="事件传播机制"><a href="#事件传播机制" class="headerlink" title="事件传播机制"></a>事件传播机制</h4><img src="/2023/03/06/WebAPI/20211216105521.jpg" alt="事件流" style="zoom: 50%;">
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在冒泡阶段触发</span></span><br><span class="line">div.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在捕获阶段触发事件</span></span><br><span class="line">div.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在冒泡阶段触发事件（默认）</span></span><br><span class="line">div.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
 
